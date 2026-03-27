@@ -1,0 +1,13 @@
+[project]
+name = "stereotype-detection-through-steering-vectors"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "datasets>=4.8.4",
+    "dialz>=1.1.4",
+    "ipywidgets>=8.1.8",
+    "pandas>=2.3.3",
+    "transformers>=4.57.6",
+]
