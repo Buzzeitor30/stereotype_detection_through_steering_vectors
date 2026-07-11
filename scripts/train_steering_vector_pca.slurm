@@ -27,14 +27,14 @@ set -euo pipefail
 cd "${SLURM_SUBMIT_DIR:-$(dirname "$0")/..}"
 mkdir -p vectors
 
-MODEL_NAME="${MODEL_NAME:-meta-llama/Llama-3.1-8B-Instruct}"
+MODEL_NAME="${MODEL_NAME:-Qwen/Qwen3-8B}"
 LAYER_IDS="${LAYER_IDS:-}"          # empty = all steerable layers (1..N-1)
-CSV_PATH="${CSV_PATH:-data/stereotype_subset_200_es.csv}"
+CSV_PATH="${CSV_PATH:-../data/stereotype_subset_200_es.csv}"
 OUT_VECTOR="${OUT_VECTOR:-vectors/stereotype_es_pca_${SLURM_JOB_ID:-local}.gguf}"
 
 echo "Job ${SLURM_JOB_ID:-<none>} on $(hostname): model=$MODEL_NAME layers=${LAYER_IDS:-all} csv=$CSV_PATH"
 
-uv run python scripts/train_steering_vector.py "$CSV_PATH" \
+uv run python train_steering_vector.py "$CSV_PATH" \
     --model-name "$MODEL_NAME" \
     --tweet-col tweet \
     --method pca \
